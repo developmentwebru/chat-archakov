@@ -3,6 +3,7 @@ import {Form, Input} from "antd";
 import {Block, Button} from "../../../components";
 import {Link} from "react-router-dom";
 import { UserOutlined, LockOutlined, MailOutlined, InfoCircleTwoTone } from '@ant-design/icons';
+import {validateField} from "../../../utils/helpers";
 
 const RegisterForm = (props) => {
     const {
@@ -41,7 +42,7 @@ const RegisterForm = (props) => {
                     <Form.Item
                         help={!touched.email ? '' : errors.email}
                         hasFeedback
-                        validateStatus={!touched.email ? '' : errors.email  ? 'error' : 'success'}
+                        validateStatus={validateField('email', touched, errors)}
                     >
                         <Input
                             id="email"
@@ -56,7 +57,7 @@ const RegisterForm = (props) => {
                     </Form.Item>
                     <Form.Item
                         hasFeedback
-                        validateStatus="success"
+
                         name="username"
 
                     >
@@ -70,7 +71,7 @@ const RegisterForm = (props) => {
 
                     <Form.Item
                         name="password"
-                        validateStatus={!touched.password ? '' : errors.password  ? 'error' : 'success'}
+                        validateStatus={validateField('password', touched, errors)}
                         help={!touched.password ? '' : errors.password}
                     >
                         <Input
@@ -85,7 +86,7 @@ const RegisterForm = (props) => {
                         />
                     </Form.Item>
                     <Form.Item
-
+                        validateStatus={validateField('email', touched, errors)}
 
                     >
                         <Input
