@@ -51,6 +51,45 @@
 .message__icon-readed--no {
   left: -20px;
 }
+.message--is-audio audio {
+  display: none;
+}
+.message--is-audio .message__bubble {
+  position: relative;
+  width: 280px;
+  overflow: hidden;
+}
+.message--is-audio .message__audio-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.message--is-audio .message__audio-btn button {
+  cursor: pointer;
+  border: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 30px;
+  background: #0f3997;
+}
+.message--is-audio .message__audio-btn button img {
+  height: 13px;
+}
+.message--is-audio .message__audio-duration {
+  color: #fff;
+  font-weight: 500;
+  opacity: 0.5;
+  font-size: 12px;
+}
+.message--is-audio .message__audio-progress {
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #418fff;
+  height: 100%;
+  transition: width 0.2s ease-in-out;
+}
 .message--isme {
   display: flex;
   flex-direction: row-reverse;

@@ -2,7 +2,7 @@ import React from 'react';
 import {Form, Input} from "antd";
 import {Block, Button} from "../../../components";
 import {Link} from "react-router-dom";
-import { UserOutlined, LockOutlined, MailOutlined, InfoCircleTwoTone } from '@ant-design/icons';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import  {validateField} from '../../../utils/helpers'
 
 

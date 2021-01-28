@@ -7,7 +7,8 @@ import noReadedSvg from "../../assets/img/noreaded.svg";
 
 
 const IconReaded = ({isMe, isReaded }) =>
-    isMe && (isReaded ? (
+    (isMe &&
+        (isReaded ? (
         <img
             className="message__icon-readed"
             src={readedSvg}
@@ -19,7 +20,7 @@ const IconReaded = ({isMe, isReaded }) =>
             src={noReadedSvg}
             alt="No readed icon"
         />
-    ))
+    )))||null;
 IconReaded.propTypes = {
     isMe: PropTypes.bool,
     isReaded: PropTypes.bool

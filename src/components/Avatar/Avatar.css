@@ -1,0 +1,15 @@
+.avatar {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.avatar--symbol {
+  color: #ffffff;
+  text-align: center;
+  justify-content: center;
+  font-weight: 600;
+  line-height: 40px;
+  font-size: 18px;
+}
+
+/*# sourceMappingURL=Avatar.css.map */

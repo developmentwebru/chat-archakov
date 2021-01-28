@@ -1,16 +1,16 @@
-import React from 'react';
-import {formatDistanceToNow } from 'date-fns'
-import ruLocale from 'date-fns/locale/ru';
-import PropTypes from 'prop-types';
-import './Time.scss'
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import distanceInWordsToNow from "date-fns/distance_in_words_to_now";
+import ruLocale from "date-fns/locale/ru";
 
-
-const Time = ({date}) =>
-    formatDistanceToNow(new Date(date), {addSuffix: true, locale: ruLocale})
+const Time = ({ date }) => (
+    <Fragment>
+        {distanceInWordsToNow(date, { addSuffix: true, locale: ruLocale })}
+    </Fragment>
+);
 
 Time.propTypes = {
-    date: PropTypes.instanceOf(Date)
-}
-
+    date: PropTypes.string
+};
 
 export default Time;

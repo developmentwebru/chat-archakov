@@ -1,4 +1,4 @@
-export default (touched, errors, key) => {
+const  ValidateFielding = (touched, errors, key) => {
     if (touched[key]) {
         if (errors[key])  {
             return 'error';
@@ -9,3 +9,7 @@ export default (touched, errors, key) => {
         return  '';
     }
 }
+
+
+
+export default ValidateFielding;

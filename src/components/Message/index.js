@@ -1,17 +1,121 @@
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
+import { convertCurrentTime} from "../../utils/helpers";
+import waveSvg from '../../assets/img/wave.svg'
+import playSvg from '../../assets/img/play.svg'
+import pauseSvg from '../../assets/img/pause.svg'
 import './Mesage.scss'
 import classNames from 'classnames';
-import readedSvg from "../../assets/img/readed.svg";
-import noReadedSvg from "../../assets/img/noreaded.svg";
-import {IconReaded, Time} from "../";
+import IconReaded from "../IconReaded";
+
+import {Time} from "../";
+
+const MessageAudio = ({audioSrc}) => {
+    const audioElem = useRef(null);
 
 
-const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTyping }) => (
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [progress, setProgress] = useState(0);
+    const [currentTime, setCurrentTime] = useState(0);
+
+    const togglePlay = () => {
+        if (!isPlaying) {
+            audioElem.current.play();
+        } else {
+            audioElem.current.pause();
+        }
+    };
+
+    useEffect(() => {
+
+         /*   audioElem.current.addEventListener('loadedmetadata', () => {
+                setCurrentTime(audioElem.current.duration);
+            });*/  /*чтобы было показано сколько времени будет играть мелодия*/
+        audioElem.current.volume = '0.02';
+        audioElem.current.addEventListener(
+            "playing",
+            () => {
+                setIsPlaying(true);
+            },
+            false
+        );
+        audioElem.current.addEventListener(
+            "ended",
+            () => {
+                setIsPlaying(false);
+                setProgress(0);
+                setCurrentTime(0);
+            },
+            false
+        );
+        audioElem.current.addEventListener(
+            "pause",
+            () => {
+                setIsPlaying(false);
+            },
+            false
+        );
+        audioElem.current.addEventListener("timeupdate", () => {
+            const duration = (audioElem.current && audioElem.current.duration) || 0;
+            setCurrentTime(audioElem.current.currentTime);
+            setProgress(((audioElem.current.currentTime / duration) * 100)+(duration*0.2));
+        });
+    }, []);
+
+    return   <div className="message__audio">
+        <audio ref={audioElem} src={audioSrc} preload='auto' />
+        <div className="message__audio-progress"
+             style={{width: progress + '%'}}
+        >  </div>
+        <div className="message__audio-info">
+            <div className="message__audio-btn">
+                <button onClick={togglePlay}>
+                    {isPlaying
+                        ?(<img src={pauseSvg} alt="Pause svg"/>)
+                        : (<img src={playSvg} alt="Play svg"/>)}
+
+                </button>
+            </div>
+            <div className="message__audio-wave">
+                <img src={waveSvg} alt="Wave svg"/>
+            </div>
+            <span className="message__audio-duration">
+                                    {convertCurrentTime(currentTime)}
+                                </span>
+        </div>
+
+    </div>
+}
+
+const Message = ({
+                     avatar,
+                     user,
+                     text,
+                     date,
+                     isMe,
+                     isReaded,
+                     audio,
+                     attachments,
+                     isTyping
+}) => {
+
+
+
+
+
+
+
+
+
+
+
+    return (
     <div className={classNames("message", {
         "message--isme": isMe,
         "message--is-typing": isTyping,
-        "message--image": attachments && attachments.length === 1
+        "message--is-audio": audio,
+        "message--image": attachments && attachments.length === 1,
+
 
     })}>
         <div className="message__content">
@@ -21,7 +125,7 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTypi
                 <img src={avatar} alt={`Avatar ${user.fullname}`} />
             </div>
             <div className="message__info">
-                {(text || isTyping) &&(<div className="message__bubble">
+                {(audio || text || isTyping) &&(<div className="message__bubble">
                     {text && <p className="message__text">{text}</p>}
                     {isTyping && (<div className="message__typing">
                         <div className="typing-indicator">
@@ -30,22 +134,27 @@ const Message = ({ avatar, user, text, date, isMe, isReaded, attachments, isTypi
                             <span></span>
                         </div>
                     </div>)}
+                    {
+                        audio && (<MessageAudio audioSrc={audio}/>)
+                    }
                 </div>)}
-                <div className="message__attachments">
-                    {attachments &&
-                    attachments.map(item => (
+
+                {attachments &&(<div className="message__attachments">
+                    {attachments.map(item => (
                         <div className="message__attachments-item">
-                            <img src={item.url} alt={item.filename} />
+                            <img src={item.url} alt={item.filename}/>
                         </div>
-                    ))}
-                </div>
+                    ))} </div>)}
+
                 {date && (<span className="message__date">
-          <Time date={date}/>
+         <Time date={date}/>
         </span>)}
             </div>
         </div>
     </div>
-);
+)};
+
+
 
 Message.defaultProps = {
     user: {}
@@ -60,6 +169,7 @@ Message.propTypes = {
     isTyping: PropTypes.bool,
     isReaded: PropTypes.bool,
     isMe: PropTypes.bool,
+    audio: PropTypes.string
 };
 
 export default Message;

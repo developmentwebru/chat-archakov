@@ -1,34 +1,51 @@
-import React from 'react';/*
-import Message from "../../components/Message";*/
-import {DialogItem, Message} from "../../components";
+import React from 'react';
+import { Dialogs, Message} from "../../components";
 import './Home.scss'
+
 
 const Home = ()=> {
 
     return (
         <section className='home'>
-        <div className="dialogs">
-            <DialogItem user={{
-            fullname:'Федор Достоевский',
-            isOnline: true
-        }}
-        unreaded={10}
-        />
-        </div>
+            <Dialogs
+                userId={0}
+                items={[
 
-      {/*      <Dialogs items={[
-                {
-                    user: {
-                        fullname: 'Федор Достоевский',
-                        avatar: null
-                    },
-                   message: {
+                     {
+                       _id: "5dae041441991509fbdc96bdb34d2818",
                        text: 'Мы все свидетельствуем, а не пытаемся победить',
                        isReaded: false,
-                       created_at: new Date()
-                   }
-                }
-            ]}/>*/}
+                       created_at: 'Wed Jan 28 2021 00:11:45',
+                       user: {
+                           _id: "5dae041441991509fbdc96bdb34d2818",
+                            fullname: 'Федор Достоевский',
+                            avatar: null
+                            }
+                             },
+                    {
+                        _id: "4c4580c965e6f137f2630d93dd7ecdde",
+                        text: 'Мы все свидетельствуем, а не пытаемся победить',
+                        isReaded: false,
+                        created_at: 'Wed Jan 25 2021 00:10:45',
+                        user: {
+                            _id: "4c4580c965e6f137f2630d93dd7ecdde",
+                            fullname: 'Алан Тьюринг',
+                            avatar: 'https://sun2-9.userapi.com/impf/c631817/v631817500/39bcb/rAJR2vkSJHQ.jpg?size=50x0&quality=96&crop=77,45,293,293&sign=6fdfab9db970ee4cd77dea54f72f4c71&ava=1'
+                        }
+                    }
+
+             ]}/>
+
+
+            <Message avatar='https://sun2-9.userapi.com/impf/c847018/v847018152/bc2fa/jl5qPMeshrM.jpg?size=50x0&quality=96&crop=1,319,1077,1077&sign=58aaeb3be909fe4bc28c18c0b5c6d1bd&ava=1'
+
+                     date='Mon Jan 25 2021 18:45:17'
+                     audio='https://proxy.notificationsounds.com/funny/vuvuzela-power-down-126/download/file-de_vuvuzela-power-down.mp3'
+
+            />
+
+
+
            {/* <Message avatar='https://sun2-9.userapi.com/impf/c847018/v847018152/bc2fa/jl5qPMeshrM.jpg?size=50x0&quality=96&crop=1,319,1077,1077&sign=58aaeb3be909fe4bc28c18c0b5c6d1bd&ava=1'
                      text='Саламаллейкум Бро'
                      date='Mon Jan 25 2021 18:45:17'

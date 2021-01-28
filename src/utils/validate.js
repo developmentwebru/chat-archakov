@@ -1,4 +1,4 @@
-export default ({ isAuth, values, errors }) => {
+const ValidateUtils = ({ isAuth, values, errors }) => {
     const rules = {
         email: value => {
             if (!value) {
@@ -18,3 +18,4 @@ export default ({ isAuth, values, errors }) => {
 
     Object.keys(values).forEach(key => rules[key] && rules[key](values[key]));
 };
+export default ValidateUtils;
