@@ -6,10 +6,7 @@ import {generateAvatarFromHash} from "../../utils/helpers";
 
 
 
-
-import "./Avatar.scss";
-
-const Avatar = ({ user }) => {
+const Avatar = ({user}) => {
     if (user.avatar) {
         return (
             <img
@@ -19,7 +16,7 @@ const Avatar = ({ user }) => {
             />
         );
     } else {
-        const { color, colorLighten } = generateAvatarFromHash(user._id);
+        const {color, colorLighten} = generateAvatarFromHash(user._id);
         const firstChar = user.fullname[0].toUpperCase();
         return (
             <div

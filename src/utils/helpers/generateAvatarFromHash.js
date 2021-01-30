@@ -11,14 +11,18 @@ const getCorrectIndex = number => {
 };
 const Hash1=  hash => {
     const [r,g,b] = hash
-        .substr(0, 3)
+        .substr(12, 15)
         .split('')
         .map(char => getCorrectIndex(char.charCodeAt(0)));
 
     return  {
-         color : tinycolor({r,g,b}).toHexString(),
+         color : tinycolor({r,g,b})
+             .lighten(0)
+             .saturate(50)
+             .toHexString(),
          colorLighten : tinycolor({r,g,b})
           .lighten(40)
+             .saturate(50)
           .toHexString()
 }};
 

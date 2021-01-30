@@ -1,5 +1,25 @@
-.dialogs {
-  width: 300px;
+.dialogs__search {
+  padding: 2px 20px 20px 20px;
+}
+.dialogs__search .ant-input {
+  background-color: #f7f8f9;
+  border: 0;
+  height: 38px;
+  padding: 4px 11px 6px;
+}
+.dialogs__search .ant-input-search-button {
+  background-color: #f7f8f9;
+  border: 0;
+}
+.dialogs__search .ant-btn {
+  z-index: 2;
+  position: absolute;
+  display: inline-block;
+  top: 4px;
+  left: -35px;
+}
+.dialogs__search .ant-btn:hover {
+  color: #000 !important;
 }
 .dialogs__item {
   display: flex;
@@ -11,6 +31,7 @@
   width: 40px;
   height: 40px;
   margin-right: 10px;
+  margin-top: 12px;
 }
 .dialogs__item-avatar img {
   width: 100%;
@@ -36,13 +57,13 @@
   flex: 1;
 }
 .dialogs__item-info-top {
+  margin-top: 12px;
   display: flex;
 }
 .dialogs__item-info-top b {
   font-weight: 500;
   font-size: 14px;
   flex: 1;
-  margin-bottom: 6px;
 }
 .dialogs__item-info-top span {
   opacity: 0.5;
