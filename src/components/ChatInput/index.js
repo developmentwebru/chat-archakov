@@ -4,15 +4,24 @@ import { Input } from "antd";
 import { Button } from 'antd';
 import "./ChatInput.scss";
 import {CheckCircleOutlined, AudioOutlined, CameraOutlined, SmileOutlined} from "@ant-design/icons";
-
-
+import { UploadField } from '@navjobs/upload'
+import { Picker } from 'emoji-mart'
 const ChatInput = props => {
     const [value, setValue] = useState("");
+    const [emojiPickerVisible, setShowEmojiPicker] = useState(false);
+
+    const toggleEmojiPicker = () => {
+        setShowEmojiPicker(!emojiPickerVisible);
+    }
 
     return (
         <div className="chat-input">
             <div className="chat-input__smile-btn">
-                <Button type="dashed" shape="circle" icon={<SmileOutlined />} />
+                {emojiPickerVisible && (<div className="chat-input__emoji-picker">
+                    <Picker set='apple'/>
+                </div>)}
+
+                <Button onClick={toggleEmojiPicker} type="dashed" shape="circle" icon={<SmileOutlined />} />
 
             </div>
             <Input
@@ -21,7 +30,20 @@ const ChatInput = props => {
                 placeholder="Введите текст сообщения…"
             />
             <div className="chat-input__actions">
-                <Button type="dashed" shape="circle" icon={<CameraOutlined />} />
+
+                <UploadField
+                    onFiles={files => console.log(files)}
+                        containerProps={{
+                        className: 'chat-input__actions-upload-btn'
+                    }}
+                        uploadProps={{
+                        accept: '.jpg, .png, .bmp, .gif',
+                            multiple: "multiple"
+                    }}
+
+                        ><Button type="dashed" shape="circle"   icon={<CameraOutlined />} />
+
+                        </UploadField>
 
                 {value ? (
                         <Button type="dashed" shape="circle" icon={<CheckCircleOutlined />} />

@@ -4,14 +4,7 @@ import {Block, Button} from "../../../components";
 import {Link} from "react-router-dom";
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import  {validateField} from '../../../utils/helpers'
-
-
-
-
-
-
-
-const LoginForm =  props => {
+const LoginForm = props => {
     const {
         values,
         touched,
@@ -19,88 +12,87 @@ const LoginForm =  props => {
         handleChange,
         handleBlur,
         handleSubmit,
-
+        isValid,
+        isSubmitting
     } = props;
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
-    };
     return (
-
-        <div className="auth__top">
-            <h2>
-                Войти в аккаунт
-            </h2>
-            <p>
-                Пожалуйста, войдите в свой аккаунт
-            </p>
-
+        <div>
+            <div className="auth__top">
+                <h2>Войти в аккаунт</h2>
+                <p>Пожалуйста, войдите в свой аккаунт</p>
+            </div>
             <Block>
-                <Form
-                    onSubmit={handleSubmit}
-                    name="normal_login"
-                    className="login-form"
-                    initialValues={{
-                        remember: true,
+                <Form onSubmit={handleSubmit} className="login-form">
+                <Form.Item
+                    validateStatus={validateField("email", touched, errors)}
+                    help={!touched.email ? "" : errors.email}
+                    hasFeedback
+                    style={{
+                        height: "60px",
+                        marginBottom: "20px"
                     }}
-                    onFinish={onFinish}
                 >
-                    <Form.Item
-                        help={!touched.email ? '' : errors.email}
-                        hasFeedback
-                        validateStatus={validateField('email', touched, errors)}
-                    >
-                        <Input
-                            id="email"
-                            value={values.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            type="email"
-                            size='large'
-                            prefix={<MailOutlined  className="site-form-item-icon" />}
-                            placeholder="E-mail"
+                    <Input
+
+
+                        id="email"
+                        size="large"
+                        placeholder="E-Mail"
+                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        prefix={<MailOutlined  className="site-form-item-icon" />}
+
                         />
                     </Form.Item>
 
 
                     <Form.Item
-                        name="password"
+                        style={{
+                            height: "60px",
+                            marginBottom: "20px"
+                        }}
 
-                        validateStatus={validateField('password', touched, errors)}
-                        help={!touched.password ? '' : errors.password}
+                   /*     name="password"*/
+                        validateStatus={validateField("password", touched, errors)}
+                        help={!touched.password ? "" : errors.password}
+                        hasFeedback
                     >
                         <Input
                             id="password"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.password}
-                            size='large'
-                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            size="large"
                             type="password"
                             placeholder="Пароль"
+                            value={values.password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                             prefix={<LockOutlined className="site-form-item-icon" />}
+
                         />
                     </Form.Item>
 
 
 
                     <Form.Item>
+                        {isSubmitting && !isValid && <span>Ошибка!</span>}
                         <Button
+                            disabled={isSubmitting}
+                            onClick={handleSubmit}
                             type="primary"
-                            htmlType="submit"
-                            onSubmit={handleSubmit}
-                            size='large'>
-                            Зарегистрироваться
+                            size="large"
+                        >
+                            Войти в аккаунт
                         </Button>
-
                     </Form.Item>
-
-                    <Link to='/register' className='auth__register-link' href="#">Зарегистрироваться</Link>
-
+                    <Link className="auth__register-link" to="/register">
+                        Зарегистрироваться
+                    </Link>
                 </Form>
             </Block>
         </div>
 
-    )
-}
+    );
+};
 
 export default LoginForm;
 

@@ -15,7 +15,7 @@ const RegisterForm = (props) => {
         handleSubmit,
 
     } = props;
-    const success = true;
+    const success = false;
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
     };
@@ -30,40 +30,51 @@ const RegisterForm = (props) => {
             </p>
 
             <Block>
-                {success ? (<Form
+                {!success ? (
+                    <Form
                     onSubmit={handleSubmit}
-                    name="normal_login"
+
                     className="login-form"
-                    initialValues={{
+                   /* initialValues={{
                         remember: true,
                     }}
-                   onFinish={onFinish}
+                   onFinish={onFinish}*/
                 >
                     <Form.Item
-                        help={!touched.email ? '' : errors.email}
+                        style={{
+                            height: "60px",
+                            marginBottom: "20px"
+                        }}
+
+                        help={!touched.email ? "" : errors.email}
                         hasFeedback
                         validateStatus={validateField('email', touched, errors)}
                     >
                         <Input
                             id="email"
-                            value={values.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            type="email"
-                            size='large'
-                            prefix={<MailOutlined  className="site-form-item-icon" />}
-                            placeholder="E-mail"
+                             value={values.email}
+                             onChange={handleChange}
+                             onBlur={handleBlur}
+                           /* type="email"*/
+                             size='large'
+                             prefix={<MailOutlined  className="site-form-item-icon" />}
+                             placeholder="E-mail"
+
                         />
                     </Form.Item>
                     <Form.Item
-                        hasFeedback
+                        style={{
+                            height: "60px",
+                            marginBottom: "20px"
+                        }}
+                      /*  hasFeedback
 
-                        name="username"
+                        name="username"*/
 
                     >
                         <Input
 
-                            type="user"
+                           /* type="user"*/
                             size='large'
                             prefix={<UserOutlined className="site-form-item-icon" />}
                             placeholder="Ваше имя" />
@@ -72,37 +83,47 @@ const RegisterForm = (props) => {
                     <Form.Item
                         name="password"
                         validateStatus={validateField('password', touched, errors)}
-                        help={!touched.password ? '' : errors.password}
+                        help={!touched.password ? "" : errors.password}
+                         hasFeedback
+                        style={{
+                            height: "60px",
+                            marginBottom: "20px"
+                        }}
                     >
                         <Input
                             id="password"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.password}
-                            size='large'
-                            prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
-                            placeholder="Пароль"
+                             onChange={handleChange}
+                             onBlur={handleBlur}
+                             value={values.password}
+                             size='large'
+                             prefix={<LockOutlined className="site-form-item-icon" />}
+                          /*  type="password"*/
+                             placeholder="Пароль"
                         />
                     </Form.Item>
                     <Form.Item
-                        validateStatus={validateField('email', touched, errors)}
-
+                       
+                        style={{
+                            height: "60px",
+                            marginBottom: "20px"
+                        }}
+                        validateStatus={validateField("password", touched, errors)}
                     >
                         <Input
-                            size='large'
-                            prefix={<LockOutlined className="site-form-item-icon" />}
-                            type="password"
-                            placeholder="Повторите пароль"
+                             size='large'
+                             prefix={<LockOutlined className="site-form-item-icon" />}
+                             type="password2"
+                             placeholder="Повторите пароль"
                         />
                     </Form.Item>
 
 
                     <Form.Item>
                         <Button
+                            onClick={handleSubmit}
                             type="primary"
                             htmlType="submit"
-                            onSubmit={handleSubmit}
+                           /* onSubmit={handleSubmit}*/
                             size='large'>
                             Зарегистрироваться
                         </Button>

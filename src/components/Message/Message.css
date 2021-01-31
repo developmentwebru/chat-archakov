@@ -8,12 +8,14 @@
   display: flex;
   flex-direction: column-reverse;
 }
-.message__avatar img {
+.message__avatar .avatar {
   border-radius: 50px;
   width: 33px;
   height: 33px;
   margin-right: 13px;
   margin-bottom: 23px;
+  font-size: 14px;
+  line-height: 31px;
 }
 .message__bubble {
   background: #3674ff;
@@ -162,4 +164,4 @@
   }
 }
 
-/*# sourceMappingURL=Mesages.css.map */
+/*# sourceMappingURL=Message.css.map */

@@ -1,14 +1,14 @@
-const  ValidateFielding = (touched, errors, key) => {
+const  ValidateFielding = (key, touched, errors) => {
     if (touched[key]) {
-        if (errors[key])  {
-            return 'error';
+        if (errors[key]) {
+            return "error";
         } else {
-            return 'success';
+            return "success";
         }
     } else {
-        return  '';
+        return "";
     }
-}
+};
 
 
 

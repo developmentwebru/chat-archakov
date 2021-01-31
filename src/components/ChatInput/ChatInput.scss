@@ -17,7 +17,11 @@
     }
   }
 
-
+&__emoji-picker {
+  position: absolute;
+  top: -426px;
+  z-index: 1;
+}
 
 
   &__actions {
@@ -31,6 +35,19 @@
     .anticon-check-circle{
       transform: scale(1.2);
       opacity: 0.5;
+
+      &-upload-btn {
+        cursor: pointer;
+        input{
+          cursor: pointer;
+
+        }
+        &:hover {
+          button {
+            opacity: 1;
+          }
+        }
+      }
   }
     .anticon-camera:hover,
     .anticon-audio:hover,
@@ -47,5 +64,18 @@
     &:focus {
       box-shadow: none;
     }
+  }
+}
+.chat-input__actions-upload-btn{
+  input{
+    &::-webkit-file-upload-button {
+      cursor:pointer;
+    }
+  }
+}
+.chat-input__actions-upload-btn:hover {
+  button {
+
+    opacity: 1;
   }
 }

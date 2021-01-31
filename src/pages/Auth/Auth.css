@@ -15,37 +15,39 @@
 .auth__top p {
   font-size: 18px;
   line-height: 21px;
-  opacity: 0.5;
   letter-spacing: 0.1px;
+  opacity: 0.5;
 }
 .auth__register-link {
   text-align: center;
   display: block;
-  color: #ADADAD;
-  letter-spacing: 0.12px;
-  line-height: 19px;
   font-size: 16px;
+  letter-spacing: 0.1px;
+  color: #adadad;
 }
 .auth__success-block {
-  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  height: 400px;
 }
-.auth__success-block h3 {
-  margin-top: 20px;
+.auth__success-block svg {
+  width: 48px;
+  height: 48px;
+}
+.auth__success-block h2 {
+  margin-top: 10px;
 }
 .auth__success-block p {
-  font-size: 14px;
-  color: #ADADAD;
+  color: #adadad;
 }
 .auth .button {
   text-transform: uppercase;
-  letter-spacing: 0.1px;
-  font-size: 14px;
   font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1px;
   width: 100%;
 }
 .auth .block {

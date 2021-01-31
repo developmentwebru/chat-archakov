@@ -14,6 +14,11 @@
   cursor: pointer;
   transform: scale(1.3);
 }
+.chat-input__emoji-picker {
+  position: absolute;
+  top: -426px;
+  z-index: 1;
+}
 .chat-input__actions {
   display: flex;
   align-items: center;
@@ -26,6 +31,21 @@
 .chat-input__actions .anticon-check-circle {
   transform: scale(1.2);
   opacity: 0.5;
+}
+.chat-input__actions .anticon-camera-upload-btn,
+.chat-input__actions .anticon-audio-upload-btn,
+.chat-input__actions .anticon-check-circle-upload-btn {
+  cursor: pointer;
+}
+.chat-input__actions .anticon-camera-upload-btn input,
+.chat-input__actions .anticon-audio-upload-btn input,
+.chat-input__actions .anticon-check-circle-upload-btn input {
+  cursor: pointer;
+}
+.chat-input__actions .anticon-camera-upload-btn:hover button,
+.chat-input__actions .anticon-audio-upload-btn:hover button,
+.chat-input__actions .anticon-check-circle-upload-btn:hover button {
+  opacity: 1;
 }
 .chat-input__actions .anticon-camera:hover,
 .chat-input__actions .anticon-audio:hover,
@@ -40,6 +60,14 @@
 }
 .chat-input input:focus {
   box-shadow: none;
+}
+
+.chat-input__actions-upload-btn input::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
+.chat-input__actions-upload-btn:hover button {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=ChatInput.css.map */

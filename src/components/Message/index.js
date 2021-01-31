@@ -4,11 +4,11 @@ import { convertCurrentTime} from "../../utils/helpers";
 import waveSvg from '../../assets/img/wave.svg'
 import playSvg from '../../assets/img/play.svg'
 import pauseSvg from '../../assets/img/pause.svg'
-import './Mesage.scss'
+import './Message.scss'
 import classNames from 'classnames';
 import IconReaded from "../IconReaded";
 
-import {Time} from "../";
+import {Avatar, Time} from "../";
 
 const MessageAudio = ({audioSrc}) => {
     const audioElem = useRef(null);
@@ -122,7 +122,7 @@ const Message = ({
             <IconReaded isMe={isMe} isReaded={isReaded} />
 
             <div className="message__avatar">
-                <img src={avatar} alt={`Avatar ${user.fullname}`} />
+                <Avatar user={user} />
             </div>
             <div className="message__info">
                 {(audio || text || isTyping) &&(<div className="message__bubble">

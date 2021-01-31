@@ -25,6 +25,10 @@
   display: flex;
   margin-bottom: 20px;
 }
+.dialogs__item--selected, .dialogs__item--selected:hover {
+  color: #fff !important;
+  background-color: #1890ff !important;
+}
 .dialogs__item-avatar {
   position: relative;
   flex: 0 0 40px;
