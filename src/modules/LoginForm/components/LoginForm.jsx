@@ -4,6 +4,8 @@ import {Block, Button} from "../../../components";
 import {Link} from "react-router-dom";
 import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import  {validateField} from '../../../utils/helpers'
+
+
 const LoginForm = props => {
     const {
         values,
@@ -13,7 +15,8 @@ const LoginForm = props => {
         handleBlur,
         handleSubmit,
         isValid,
-        isSubmitting
+        isSubmitting,
+
     } = props;
     return (
         <div>
@@ -74,6 +77,7 @@ const LoginForm = props => {
 
 
                     <Form.Item>
+
                         {isSubmitting && !isValid && <span>Ошибка!</span>}
                         <Button
                             disabled={isSubmitting}
