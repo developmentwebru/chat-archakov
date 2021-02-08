@@ -2,7 +2,7 @@ import {dialogsApi} from '../../utils/api';
 
 
 
-const actions = {
+const Actions = {
     setDailogs: items => ({
         type: 'DIALOGS:SET_ITEMS',
         payload: items
@@ -14,9 +14,9 @@ const actions = {
 
     fetchDialogs : () => dispatch => {
         dialogsApi.getAll().then(({data}) => {
-            dispatch(actions.setDailogs(data));
+            dispatch(Actions.setDailogs(data));
         });
     }
 }
 
-export default actions;
+export default Actions;

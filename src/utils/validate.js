@@ -15,6 +15,16 @@ const ValidateUtils = ({ isAuth, values, errors }) => {
                 !/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/.test(value)) {
                 errors.password = isAuth ? "Неверный пароль" : "Слишком лёгкий пароль";
             }
+        },
+        password2: value => {
+            if (!isAuth && value !== values.password) {
+                errors.password2 = "Пароли не совпадают";
+            }
+        },
+        fullname: value => {
+            if (!isAuth && !value) {
+                errors.fullname = "Укажите свое имя";
+            }
         }
     };
 

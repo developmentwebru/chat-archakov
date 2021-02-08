@@ -1,9 +1,9 @@
 import React from 'react';
-import {Form, Input} from "antd";
-import {Block, Button} from "../../../components";
+import {Form} from "antd";
+import {Block, Button, FormField} from "../../../components";
 import {Link} from "react-router-dom";
 import { UserOutlined, LockOutlined, MailOutlined, InfoCircleTwoTone } from '@ant-design/icons';
-import {validateField} from "../../../utils/helpers";
+
 
 const RegisterForm = (props) => {
     const {
@@ -13,7 +13,7 @@ const RegisterForm = (props) => {
         handleChange,
         handleBlur,
         handleSubmit,
-
+        isSubmitting
     } = props;
     const success = false;
     const onFinish = (values) => {
@@ -31,6 +31,7 @@ const RegisterForm = (props) => {
 
             <Block>
                 {!success ? (
+
                     <Form
                     onSubmit={handleSubmit}
 
@@ -40,97 +41,38 @@ const RegisterForm = (props) => {
                     }}
                    onFinish={onFinish}*/
                 >
-                    <Form.Item
-                        style={{
-                            height: "60px",
-                            marginBottom: "20px"
-                        }}
-
-                        help={!touched.email ? "" : errors.email}
-                        hasFeedback
-                        validateStatus={validateField('email', touched, errors)}
-                    >
-                        <Input
-                            id="email"
-                             value={values.email}
-                             onChange={handleChange}
-                             onBlur={handleBlur}
-                           /* type="email"*/
-                             size='large'
-                             prefix={<MailOutlined  className="site-form-item-icon" />}
-                             placeholder="E-mail"
-
+                        <FormField touched={touched} errors={errors}
+                                   name='email' icon={<MailOutlined  className="site-form-item-icon" />} handleBlur={handleBlur}
+                                   handleChange={handleChange} values={values} placeholder='E-mail'
                         />
-                    </Form.Item>
-                    <Form.Item
-                        style={{
-                            height: "60px",
-                            marginBottom: "20px"
-                        }}
-                      /*  hasFeedback
-
-                        name="username"*/
-
-                    >
-                        <Input
-
-                           /* type="user"*/
-                            size='large'
-                            prefix={<UserOutlined className="site-form-item-icon" />}
-                            placeholder="Ваше имя" />
-                    </Form.Item>
-
-                    <Form.Item
-                        name="password"
-                        validateStatus={validateField('password', touched, errors)}
-                        help={!touched.password ? "" : errors.password}
-                         hasFeedback
-                        style={{
-                            height: "60px",
-                            marginBottom: "20px"
-                        }}
-                    >
-                        <Input
-                            id="password"
-                             onChange={handleChange}
-                             onBlur={handleBlur}
-                             value={values.password}
-                             size='large'
-                             prefix={<LockOutlined className="site-form-item-icon" />}
-                          /*  type="password"*/
-                             placeholder="Пароль"
+                        <FormField touched={touched} errors={errors}
+                                   name='fullname' icon={<UserOutlined  className="site-form-item-icon" />} handleBlur={handleBlur}
+                                   handleChange={handleChange} values={values} placeholder='Ваше имя'
                         />
-                    </Form.Item>
-                    <Form.Item
-                       
-                        style={{
-                            height: "60px",
-                            marginBottom: "20px"
-                        }}
-                        validateStatus={validateField("password", touched, errors)}
-                    >
-                        <Input
-                             size='large'
-                             prefix={<LockOutlined className="site-form-item-icon" />}
-                             type="password2"
-                             placeholder="Повторите пароль"
+                        <FormField touched={touched} errors={errors}
+                                   name='password' icon={<LockOutlined  className="site-form-item-icon" />} handleBlur={handleBlur}
+                                   handleChange={handleChange} values={values} placeholder='Введите пароль'
+                                   type="password"
                         />
-                    </Form.Item>
-
+                        <FormField touched={touched} errors={errors}
+                                   name='password2' icon={<LockOutlined  className="site-form-item-icon" />} handleBlur={handleBlur}
+                                   handleChange={handleChange} values={values} placeholder='Повторите пароль'
+                                   type="password"
+                        />
 
                     <Form.Item>
                         <Button
                             onClick={handleSubmit}
                             type="primary"
                             htmlType="submit"
-                           /* onSubmit={handleSubmit}*/
+                            disabled={isSubmitting}
                             size='large'>
                             Зарегистрироваться
                         </Button>
 
                     </Form.Item>
 
-                    <Link to='/login' className='auth__register-link' href="#">Войти в аккаунт</Link>
+                    <Link to='/signin' className='auth__register-link' href="#">Войти в аккаунт</Link>
 
                 </Form> ): (<div className='auth__success-block'>
                              <InfoCircleTwoTone style={{ fontSize: '50px' }} />
