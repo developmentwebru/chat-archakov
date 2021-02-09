@@ -31,7 +31,7 @@ const Home = ()=> {
                     <div className="chat__dialog-header">
                         <div />
                        <div className="chat__dialog-header-center">
-                           <b className="chat__dialog-header-username">Гай Юлий Цезарь</b>
+                           <b className="chat__dialog-header-username">Petr</b>
                            <div className="chat__dialog-header-status">
                                 <Status online/>
                            </div>

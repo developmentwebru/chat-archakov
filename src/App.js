@@ -2,8 +2,10 @@ import React from 'react';
 import {Auth,Home} from "./pages/";
 import {connect} from "react-redux";
 import { Route, Redirect, Switch } from "react-router-dom";
-
-
+/*
+import store from './redux/store'
+if(localStorage.token) { store.dispatch(setUser(localStorage.token)) }
+*/
 
 const App = props => {
     const { isAuth } = props;

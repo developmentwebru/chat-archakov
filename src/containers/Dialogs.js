@@ -17,18 +17,16 @@ const Dialogs = ({fetchDialogs, setCurrentDialogId, currentDialogId, items, user
         setValue(value);
     };
 
-    const onSelectDialog = () => {
 
-    };
 
-   /* useEffect(() =>{
+   useEffect(() =>{
     if (!items.length) {
         fetchDialogs();
     }else {
         setFiltredItems(items);
     }
 
-    }, [items]);*/
+    }, [items]);
 
     return (
         <BaseDialogs
