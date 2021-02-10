@@ -2,42 +2,63 @@ import React, { useState, useEffect } from "react";
 import {connect} from 'react-redux'
 import { Dialogs as BaseDialogs } from "../components";
 import {dialogsActions} from "../redux/actions";
-
-const Dialogs = ({fetchDialogs, setCurrentDialogId, currentDialogId, items, userId }) => {
+import socket from '../core/socket'
+const Dialogs = ({
+                     fetchDialogs,
+                     currentDialogId,
+                     setCurrentDialogId,
+                     items,
+                     userId
+                 }) => {
     const [inputValue, setValue] = useState("");
     const [filtred, setFiltredItems] = useState(Array.from(items));
 
-    const onChangeInput = value => {
-        setFiltredItems(
-            items.filter(
-                dialog =>
-                    dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
-            )
+
+        const onChangeInput = (value = "") => {
+            setFiltredItems(
+                items.filter(
+                    dialog =>
+
+            dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >=
+            0 ||
+            dialog.partner.fullname.toLowerCase().indexOf(value.toLowerCase()) >=
+            0
+        )
         );
-        setValue(value);
+            setValue(value);
+        };
+
+
+        const onNewDialog = () => {
+            fetchDialogs();
+        };
+
+        window.fetchDialogs = fetchDialogs;
+
+        useEffect(() => {
+            if (items.length) {
+                onChangeInput();
+            }
+        }, [items]);
+
+        useEffect(() => {
+            fetchDialogs();
+            socket.on("SERVER:DIALOG_CREATED", onNewDialog);
+            return () => socket.removeListener("SERVER:DIALOG_CREATED", onNewDialog);
+        }, []);
+
+        return (
+            <BaseDialogs
+                userId={userId}
+                items={filtred}
+                onSearch={onChangeInput}
+                inputValue={inputValue}
+                onSelectDialog={setCurrentDialogId}
+                currentDialogId={currentDialogId}
+            />
+        );
     };
-
-
-
-   useEffect(() =>{
-    if (!items.length) {
-        fetchDialogs();
-    }else {
-        setFiltredItems(items);
-    }
-
-    }, [items]);
-
-    return (
-        <BaseDialogs
-            userId={userId}
-            items={filtred}
-            onSearch={onChangeInput}
-            inputValue={inputValue}
-            onSelectDialog={setCurrentDialogId}
-            currentDialogId={currentDialogId}
-        />
-    );
-};
-
-export default connect(({ dialogs}) => dialogs, dialogsActions)(Dialogs);
+    export default connect(
+        ({ dialogs }) => dialogs,
+        dialogsActions
+    )(Dialogs);

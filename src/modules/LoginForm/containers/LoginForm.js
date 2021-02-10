@@ -27,12 +27,11 @@ const LoginFormContainer = withFormik({
 
                         props.history.push("/");
 
+
                 }
                 setSubmitting(false);
             })
-            .catch(() => {
-                setSubmitting(false);
-            })
+
             .catch(() => {
                 setSubmitting(false);
             });

@@ -10,33 +10,31 @@ const Actions = {
         payload: bool
     }),
     fetchUserData: () => dispatch => {
-
-        userApi
-            .getMe()
-            .then(({ data }) => {
-                dispatch(Actions.setUserData(data));
-            })
-            .catch(err => {
-                if (err.response.status === 403) {
-                    dispatch(Actions.setIsAuth(false));
-                    delete window.localStorage.token;
-                }
-            });
+        userApi.getMe().then(({ data }) => {
+            dispatch(Actions.setUserData(data));
+        }).catch(err => {
+            if(err.response.status === 403){
+                dispatch(Actions.setIsAuth(false));
+                delete window.localStorage.token
+            }
+        })
     },
     fetchUserLogin: postData => dispatch => {
-        return userApi
-            .signIn(postData)
-            .then(({ data }) => {
-                const { token } = data;
-                openNotification({
-                    title: "Отлично!",
-                    text: "Авторизация успешна.",
-                    type: "success"
-                });
-                window.axios.defaults.headers.common["token"] = token;
-                window.localStorage["token"] = token;
-                dispatch(Actions.fetchUserData());
-                dispatch(Actions.setIsAuth(true));
+
+                return userApi
+                    .signIn(postData)
+                    .then(({ data }) => {
+                        const { token } = data;
+                        openNotification({
+                            title: "Отлично!",
+                            text: "Авторизация успешна.",
+                            type: "success"
+                        });
+                        window.axios.defaults.headers.common["token"] = token;
+                        window.localStorage["token"] = token;
+                        dispatch(Actions.fetchUserData());
+                        dispatch(Actions.setIsAuth(true));
+
                 return data;
             })
             .catch(({ response }) => {

@@ -24,6 +24,7 @@
 .dialogs__item {
   display: flex;
   margin-bottom: 20px;
+  color: #202020;
 }
 .dialogs__item--selected, .dialogs__item--selected:hover {
   color: #fff !important;

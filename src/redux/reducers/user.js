@@ -2,7 +2,7 @@
 const initialState = {
     data: null,
     token: window.localStorage.token,
-    isAuth: !!window.localStorage.token
+    isAuth: false
 }
 
 export default (state = initialState, {type, payload}) => {

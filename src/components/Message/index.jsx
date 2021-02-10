@@ -126,7 +126,11 @@ const Message = ({
             </div>
             <div className="message__info">
                 {(audio || text || isTyping) &&(<div className="message__bubble">
-                    {text && <p className="message__text">{text}</p>}
+                    {text && (
+                    <p className="message__text">
+                        {text}
+                    </p>
+                    )}
                     {isTyping && (<div className="message__typing">
                         <div className="typing-indicator">
                             <span></span>

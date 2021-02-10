@@ -3,7 +3,7 @@ import {dialogsApi} from '../../utils/api';
 
 
 const Actions = {
-    setDailogs: items => ({
+    setDialogs: items => ({
         type: 'DIALOGS:SET_ITEMS',
         payload: items
     }),
@@ -14,7 +14,7 @@ const Actions = {
 
     fetchDialogs : () => dispatch => {
         dialogsApi.getAll().then(({data}) => {
-            dispatch(Actions.setDailogs(data));
+            dispatch(Actions.setDialogs(data));
         });
     }
 }

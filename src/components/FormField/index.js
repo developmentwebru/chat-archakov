@@ -21,7 +21,7 @@ const FormField = ({touched, errors, values, name, placeholder, handleChange, ha
                 value={values[name]}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                /* type="email"*/
+          
                 size='large'
                 prefix={icon}
                 placeholder={placeholder}
